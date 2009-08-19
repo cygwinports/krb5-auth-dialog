@@ -1,0 +1,6 @@
+inherit gnome2
+
+DESCRIPTION="GNOME tray icon that monitors and renews Kerberos tickets"
+HOMEPAGE="https://honk.sigxcpu.org/piki/projects/krb5-auth-dialog/"
+
+CYGCONF_ARGS="--enable-network-manager --without-libcap"
