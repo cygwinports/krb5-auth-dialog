@@ -4,7 +4,7 @@
  libka_plugin_dummy_la_LDFLAGS = \
  	-module \
  	-avoid-version \
-+	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a -lgobject-2.0 \
  	$(NULL)
  
  # PAM plugin
@@ -12,7 +12,7 @@
  libka_plugin_pam_la_LDFLAGS = \
  	-module \
  	-avoid-version \
-+	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a -lgobject-2.0 \
  	$(PAM_LIBS) \
  	$(NULL)
  endif
