@@ -1,6 +1,6 @@
---- origsrc/krb5-auth-dialog-0.16/plugins/Makefile.am	2010-04-27 12:51:14.000000000 -0500
-+++ src/krb5-auth-dialog-0.16/plugins/Makefile.am	2010-06-30 17:07:24.380984000 -0500
-@@ -27,6 +27,7 @@ libka_plugin_dummy_la_CPPFLAGS = \
+--- origsrc/krb5-auth-dialog-0.17/plugins/Makefile.am	2010-09-21 23:03:40.216909100 -0500
++++ src/krb5-auth-dialog-0.17/plugins/Makefile.am	2010-09-21 23:01:33.345417000 -0500
+@@ -28,6 +28,7 @@ libka_plugin_dummy_la_CPPFLAGS = \
  libka_plugin_dummy_la_LDFLAGS = \
  	-module \
  	-avoid-version \
@@ -8,7 +8,7 @@
  	$(NULL)
  
  # PAM plugin
-@@ -44,6 +45,7 @@ libka_plugin_pam_la_CPPFLAGS = \
+@@ -45,6 +46,7 @@ libka_plugin_pam_la_CPPFLAGS = \
  libka_plugin_pam_la_LDFLAGS = \
  	-module \
  	-avoid-version \
@@ -16,8 +16,14 @@
  	$(PAM_LIBS) \
  	$(NULL)
  endif
---- origsrc/krb5-auth-dialog-0.16/src/Makefile.am	2010-04-29 03:28:46.000000000 -0500
-+++ src/krb5-auth-dialog-0.16/src/Makefile.am	2010-06-30 17:34:42.244664500 -0500
+@@ -63,4 +65,5 @@ libka_plugin_afs_la_CPPFLAGS = \
+ libka_plugin_afs_la_LDFLAGS = \
+ 	-module \
+ 	-avoid-version \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a -lgobject-2.0 \
+ 	$(NULL)
+--- origsrc/krb5-auth-dialog-0.17/src/Makefile.am	2010-09-21 23:03:40.232509100 -0500
++++ src/krb5-auth-dialog-0.17/src/Makefile.am	2010-09-21 22:24:49.000000000 -0500
 @@ -70,6 +70,8 @@ krb5_auth_dialog_CFLAGS = \
  	$(AM_CFLAGS) \
  	$(NULL)
@@ -27,8 +33,8 @@
  krb5_auth_dialog_LDADD = \
  	$(top_builddir)/gtksecentry/libgtksecentry.a \
  	$(top_builddir)/secmem/libsecmem.a \
---- origsrc/krb5-auth-dialog-0.16/src/ka-plugin-loader.c	2010-04-29 03:28:46.000000000 -0500
-+++ src/krb5-auth-dialog-0.16/src/ka-plugin-loader.c	2010-06-30 17:10:34.547860900 -0500
+--- origsrc/krb5-auth-dialog-0.17/src/ka-plugin-loader.c	2010-09-21 23:03:40.232509100 -0500
++++ src/krb5-auth-dialog-0.17/src/ka-plugin-loader.c	2010-09-21 22:24:49.000000000 -0500
 @@ -120,7 +120,7 @@ load_plugins (KaPluginLoader *self)
  		char *fname;
  		KaPlugin *plugin;
