@@ -1,5 +1,5 @@
-category: Net
-requires: libdbus-glib_1_2 libgconf2_4 libglib2.0_0 libgtk2.0_0 libintl8 libkrb5_26 libnotify1 libpango1.0_0
+category: Gnome Net
+requires: GConf2 libgconf2_4 libglib2.0_0 libgtk3_0 libintl8 libkrb5_26 libnotify4
 sdesc: "Kerberos ticket monitor"
 ldesc: "Krb5-auth-dialog is a tray applet for the GNOME Desktop that 
 monitors Kerberos tickets."
