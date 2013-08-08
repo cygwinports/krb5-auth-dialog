@@ -1,8 +1,0 @@
-inherit gnome2
-
-DESCRIPTION="GNOME tray icon that monitors and renews Kerberos tickets"
-HOMEPAGE="https://honk.sigxcpu.org/piki/projects/krb5-auth-dialog/"
-
-PATCH_URI="0.17-no-undefined.patch"
-
-CYGCONF_ARGS="--disable-network-manager --without-libcap --without-pam"

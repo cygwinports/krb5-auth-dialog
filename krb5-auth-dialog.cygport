@@ -1,0 +1,14 @@
+inherit gnome2
+
+NAME="krb5-auth-dialog"
+VERSION=3.8.0
+RELEASE=1
+CATEGORY="Net"
+SUMMARY="Kerberos ticket monitor"
+DESCRIPTION="Krb5-auth-dialog is a tray applet for the GNOME Desktop that
+monitors Kerberos tickets."
+HOMEPAGE="https://honk.sigxcpu.org/piki/projects/krb5-auth-dialog/"
+
+PATCH_URI="3.8.0-plugins.patch"
+
+CYGCONF_ARGS="--disable-network-manager --without-libcap --without-pam"
