@@ -2,7 +2,7 @@ inherit gnome2
 
 NAME="krb5-auth-dialog"
 VERSION=3.8.0
-RELEASE=1
+RELEASE=2
 CATEGORY="Net"
 SUMMARY="Kerberos ticket monitor"
 DESCRIPTION="Krb5-auth-dialog is a tray applet for the GNOME Desktop that
