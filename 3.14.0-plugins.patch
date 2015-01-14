@@ -1,0 +1,60 @@
+--- origsrc/krb5-auth-dialog-3.14.0/plugins/Makefile.am	2014-10-12 03:27:08.000000000 -0500
++++ src/krb5-auth-dialog-3.14.0/plugins/Makefile.am	2015-01-13 21:08:29.316115100 -0600
+@@ -35,6 +35,8 @@ libka_plugin_dummy_la_CPPFLAGS = \
+ libka_plugin_dummy_la_LDFLAGS = \
+ 	-module \
+ 	-avoid-version \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a \
++	$(GIO_LIBS)
+ 	$(NULL)
+ 
+ # PAM plugin
+@@ -52,6 +54,8 @@ libka_plugin_pam_la_CPPFLAGS = \
+ libka_plugin_pam_la_LDFLAGS = \
+ 	-module \
+ 	-avoid-version \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a \
++	$(GIO_LIBS)
+ 	$(PAM_LIBS) \
+ 	$(NULL)
+ endif
+@@ -70,6 +74,8 @@ libka_plugin_afs_la_CPPFLAGS = \
+ libka_plugin_afs_la_LDFLAGS = \
+ 	-module \
+ 	-avoid-version \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a \
++	$(GIO_LIBS)
+ 	$(NULL)
+ 
+ # GnomeLock plugin
+@@ -86,5 +92,6 @@ libka_plugin_gnomelock_la_CPPFLAGS = \
+ libka_plugin_gnomelock_la_LDFLAGS = \
+ 	-module \
+ 	-avoid-version \
++	-no-undefined -Wl,$(top_builddir)/src/libka-plugin.a \
+ 	$(GIO_LIBS)       \
+ 	$(NULL)
+--- origsrc/krb5-auth-dialog-3.14.0/src/Makefile.am	2014-10-12 03:24:26.000000000 -0500
++++ src/krb5-auth-dialog-3.14.0/src/Makefile.am	2015-01-13 21:05:35.000000000 -0600
+@@ -79,6 +79,8 @@ krb5_auth_dialog_CFLAGS = \
+ 	$(AM_CFLAGS) \
+ 	$(NULL)
+ 
++krb5_auth_dialog_LDFLAGS = -export-dynamic -Wl,--out-implib,libka-plugin.a
++
+ krb5_auth_dialog_LDADD = \
+ 	$(top_builddir)/secmem/libsecmem.a \
+ 	$(NETWORK_MANAGER_LIBS) \
+--- origsrc/krb5-auth-dialog-3.14.0/src/ka-plugin-loader.c	2014-06-06 14:04:42.000000000 -0500
++++ src/krb5-auth-dialog-3.14.0/src/ka-plugin-loader.c	2015-01-13 21:05:35.000000000 -0600
+@@ -119,9 +119,7 @@ load_plugins (KaPluginLoader *self)
+ 		char *fname;
+ 		KaPlugin *plugin;
+ 
+-		fname = g_strdup_printf("libka-plugin-%s.%s",
+-                                        plugins[i],
+-                                        G_MODULE_SUFFIX);
++		fname = g_strdup_printf("ka-plugin-%s", plugins[i]);
+ 		path = g_module_build_path (KA_PLUGINS_DIR, fname);
+ 
+ 		plugin = load_plugin (path);
