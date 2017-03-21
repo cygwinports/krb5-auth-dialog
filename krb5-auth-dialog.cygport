@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="krb5-auth-dialog"
-VERSION=3.15.4
+VERSION=3.20.0
 RELEASE=1
 CATEGORY="Net"
 SUMMARY="Kerberos ticket monitor"
